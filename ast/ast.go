@@ -2,7 +2,6 @@ package ast
 
 import (
 	"bytes"
-
 	"github.com/igortuchel/monkey-lang/token"
 )
 
