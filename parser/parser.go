@@ -275,9 +275,9 @@ func (p *Parser) parseReturnStatement() *ast.ReturnStatement {
 
 	p.nextToken()
 
-	// TODO: skip exp until encounter SEMICOLON
+	statement.ReturnValue = p.parseExpression(LOWEST)
 
-	for !p.curTokenIs(token.SEMICOLON) {
+	if p.peekTokenIs(token.SEMICOLON) {
 		p.nextToken()
 	}
 
@@ -300,7 +300,9 @@ func (p *Parser) parseLetStatement() ast.Statement {
 
 	p.nextToken()
 
-	if !p.curTokenIs(token.SEMICOLON) {
+	statement.Value = p.parseExpression(LOWEST)
+
+	if p.peekTokenIs(token.SEMICOLON) {
 		p.nextToken()
 	}
 
